@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.cyanwool.platform.Server;
 import net.cyanwool.platform.block.Block;
-import net.cyanwool.platform.entity.BaseEntity;
+import net.cyanwool.platform.entity.Entity;
+import net.cyanwool.platform.entity.EntityLivingBase;
+import net.cyanwool.platform.entity.alive.player.Player;
 import net.cyanwool.platform.material.blocks.BlockMaterial;
 import net.cyanwool.platform.world.chunk.ChunkManager;
 import net.cyanwool.platform.world.effect.Effect;
@@ -32,25 +34,25 @@ public interface World {
 
 	public void setSpawnPosition(Position pos);
 
-	public void playSoundAtEntity(BaseEntity baseEntity, String sound, float volume, float pitch);
+	public void playSoundAtEntity(Entity baseEntity, String sound, float volume, float pitch);
 
 	public void playSound(Position pos, String sound, float volume, float pitch);
 
-	public void playSoundExpect(Position pos, String sound, float volume, float pitch, BaseEntity player);
+	public void playSoundExpect(Position pos, String sound, float volume, float pitch, Entity player);
 
-	public void playSoundAtEntity(BaseEntity baseEntity, Sound sound, float volume, float pitch);
+	public void playSoundAtEntity(Entity baseEntity, Sound sound, float volume, float pitch);
 
 	public void playSound(Position pos, Sound sound, float volume, float pitch);
 
 	public void playEffect(Position pos, Effect effect, int data);
 
-	public void playSoundExpect(Position pos, Sound sound, float volume, float pitch, BaseEntity player);
+	public void playSoundExpect(Position pos, Sound sound, float volume, float pitch, Entity player);
 
-	public void playEffectExpect(Position pos, Effect effect, int data, BaseEntity player);
+	public void playEffectExpect(Position pos, Effect effect, int data, Entity player);
 
 	public void playParticle(Position pos, Particle particle, int amount, int data);
 
-	public void playParticleExpect(Position pos, Particle particle, int amount, int data, BaseEntity player);
+	public void playParticleExpect(Position pos, Particle particle, int amount, int data, Entity player);
 
 	public long getSeed();
 
@@ -78,11 +80,11 @@ public interface World {
 
 	public int getActualHeight();
 
-	public List<BaseEntity> getEntities();
+	public List<Entity> getEntities();
 
-	public List<BaseEntity> getLivingEntities();
+	public List<EntityLivingBase> getLivingEntities();
 
-	public List<BaseEntity> getPlayers();
+	public List<Player> getPlayers();
 
 	public void onTick();
 

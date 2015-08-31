@@ -1,16 +1,16 @@
 package net.cyanwool.platform.utils;
 
 public interface ILogger {
-	
-	//Basic.
+
+	// Basic.
 	public void info(String string);
-	
+
 	public void warn(String string);
-	
+
 	public void error(String string);
-	
+
 	public void severe(String string);
-	
+
 	public void config(String paramString);
 
 	public void fine(String paramString);

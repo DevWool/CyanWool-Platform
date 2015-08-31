@@ -1,14 +1,14 @@
 package net.cyanwool.platform.utils;
 
 import net.cyanwool.platform.material.Material;
-import net.cyanwool.platform.plugins.Plugin;
+import net.cyanwool.platform.plugins.IPlugin;
 
 public interface Registry {
 
-	//Material
+	// Material
 	public boolean registerMaterial(String prefix, Material mat);
 
-	public boolean registerMaterial(Plugin plugin, Material mat);
+	public boolean registerMaterial(IPlugin plugin, Material mat);
 
 	public Material getMaterialFromId(String prefix, int id);
 
@@ -25,8 +25,8 @@ public interface Registry {
 	// public boolean unregisterMaterial(String prefix, String id);
 
 	// public boolean unregisterMaterial(String prefix, int id);
-	
-	//Entity
-	
+
+	// Entity
+
 	public void registerEntity();
 }

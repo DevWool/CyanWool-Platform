@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import net.cyanwool.platform.Server;
-import net.cyanwool.platform.command.cyanwool.StopCommand;
-import net.cyanwool.platform.command.cyanwool.VersionCommand;
+import net.cyanwool.platform.command.cyanwool.InfoCommand;
+import net.cyanwool.platform.command.cyanwool.ShutdownCommand;
 
 public class CommandManager {
 
@@ -14,8 +14,8 @@ public class CommandManager {
 
 	public CommandManager(Server server) {
 		this.server = server;
-		register(new StopCommand());
-		register(new VersionCommand());
+		register(new ShutdownCommand());
+		register(new InfoCommand());
 	}
 
 	public void register(Command command) {

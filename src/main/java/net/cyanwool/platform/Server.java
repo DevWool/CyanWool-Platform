@@ -10,7 +10,7 @@ import net.cyanwool.platform.management.OperatorsManager;
 import net.cyanwool.platform.management.PlayerManager;
 import net.cyanwool.platform.management.WhitelistManager;
 import net.cyanwool.platform.network.NetworkServer;
-import net.cyanwool.platform.plugins.PluginManager;
+import net.cyanwool.platform.plugins.IPluginManager;
 import net.cyanwool.platform.scheduler.Scheduler;
 import net.cyanwool.platform.utils.ILogger;
 import net.cyanwool.platform.utils.Registry;
@@ -49,10 +49,10 @@ public interface Server {
 	/**
 	 * Возвращает логгер
 	 * 
-	 * @return Логгер 
+	 * @return Логгер
 	 */
 	public ILogger getLogger();
-	
+
 	/**
 	 * 
 	 * @param logger
@@ -79,7 +79,7 @@ public interface Server {
 	 * @return
 	 */
 	public PlayerManager getPlayerManager();
-	
+
 	/**
 	 * 
 	 * @param manager
@@ -92,7 +92,7 @@ public interface Server {
 	 * @return
 	 */
 	public NetworkServer getNetworkServer();
-	
+
 	/**
 	 * 
 	 * @param netserver
@@ -105,7 +105,7 @@ public interface Server {
 	 * @return
 	 */
 	public EntityManager getEntityManager();
-	
+
 	/**
 	 * 
 	 * @param manager
@@ -124,7 +124,7 @@ public interface Server {
 	 *            - Сообщение
 	 */
 	public void shutdown(String message);
-	
+
 	/**
 	 * Экстренное выключение сервера
 	 */
@@ -138,7 +138,7 @@ public interface Server {
 	/**
 	 * Менеджер для регистрации плагинов
 	 */
-	public PluginManager getPluginManager();
+	public IPluginManager getPluginManager();
 
 	/**
 	 * Менеджер для регистрации/удаления команд
@@ -153,7 +153,7 @@ public interface Server {
 	 * @return
 	 */
 	public ICommandSender getConsoleCommandSender();
-	
+
 	/**
 	 * 
 	 * @param sender
@@ -174,7 +174,7 @@ public interface Server {
 	 * Менеджер для работ с мирами
 	 */
 	public WorldManager getWorldManager();
-	
+
 	/**
 	 * 
 	 * @param manager
@@ -185,7 +185,7 @@ public interface Server {
      * 
      */
 	public Scheduler getScheduler();
-	
+
 	/**
 	 * 
 	 */

@@ -3,24 +3,19 @@ package net.cyanwool.platform.entity;
 import java.util.Collection;
 
 import net.cyanwool.platform.Server;
-import net.cyanwool.platform.entity.types.EntityType;
 import net.cyanwool.platform.world.Position;
 
 public interface EntityManager {
 
-	public Collection<BaseEntity> getEntityAll();
+	public Collection<Entity> getAll();
 
-	public BaseEntity getEntity(int id);
+	public Entity getEntity(int id);
 
-	public void trackEntity(BaseEntity baseEntity);
+	public void registerEntity(Entity entity);
 
-	public void untrackEntity(BaseEntity baseEntity);
+	public void unregisterEntity(Entity entity);
 
-	public void moveToOtherPosition(BaseEntity baseEntity, Position pos);
-	
-	public BaseEntity spawnEntity(EntityType type, Position pos);
+	public void moveToOtherPosition(Entity entity, Position pos);
 
-	public BaseEntity spawnUnknownEntity(BaseEntity baseEntity, Position pos);
-	
 	public Server getServer();
 }

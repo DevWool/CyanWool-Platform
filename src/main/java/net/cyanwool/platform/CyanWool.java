@@ -9,7 +9,7 @@ import net.cyanwool.platform.management.OperatorsManager;
 import net.cyanwool.platform.management.PlayerManager;
 import net.cyanwool.platform.management.WhitelistManager;
 import net.cyanwool.platform.network.NetworkServer;
-import net.cyanwool.platform.plugins.PluginManager;
+import net.cyanwool.platform.plugins.IPluginManager;
 import net.cyanwool.platform.scheduler.Scheduler;
 import net.cyanwool.platform.utils.ILogger;
 import net.cyanwool.platform.utils.Registry;
@@ -32,11 +32,7 @@ public class CyanWool {
 			return;
 		}
 		server = init;
-		getServer().getLogger().info("#====#_CyanWool_#====#");
-		getServer().getLogger().info("Mod Name: " + getServer().getModName());
-		getServer().getLogger().info("Host Address: " + getServer().getNetworkServer().getHostAddress());
-		getServer().getLogger().info("Port: " + getServer().getNetworkServer().getPort());
-		getServer().getLogger().info("Minecraft Version: " + getServer().getMCVersion());
+		getServer().getLogger().info("Starting minecraft server " + getServer().getModName() + "(Minecraft Version: " + getServer().getMCVersion() + ")");
 		getServer().start();
 	}
 
@@ -148,7 +144,7 @@ public class CyanWool {
 	public static LanguageManager getLanguageManager() {
 		return getServer().getLanguageManager();
 	}
-	
+
 	/**
 	 * Регистратор блоков и предметов
 	 */
@@ -159,7 +155,7 @@ public class CyanWool {
 	/**
 	 * Менеджер для регистрации плагинов
 	 */
-	public static PluginManager getPluginManager() {
+	public static IPluginManager getPluginManager() {
 		return getServer().getPluginManager();
 	}
 

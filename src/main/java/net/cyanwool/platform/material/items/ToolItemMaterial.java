@@ -1,6 +1,7 @@
 package net.cyanwool.platform.material.items;
 
-import net.cyanwool.platform.entity.BaseEntity;
+import net.cyanwool.platform.entity.Entity;
+import net.cyanwool.platform.entity.alive.player.Player;
 import net.cyanwool.platform.inventory.item.ItemStack;
 import net.cyanwool.platform.material.Material;
 import net.cyanwool.platform.utils.BlockSide;
@@ -45,13 +46,13 @@ public class ToolItemMaterial extends ItemMaterial {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, BaseEntity player, World world, Position pos, BlockSide side) {
+	public boolean onItemUse(ItemStack stack, Player player, World world, Position pos, BlockSide side) {
 		stack.setDurability(stack.getDurability() - 1);
 		return true;
 	}
 
 	@Override
-	public boolean onHitEntity(ItemStack stack, BaseEntity target, BaseEntity attacker) {
+	public boolean onHitEntity(ItemStack stack, Entity target, Player attacker) {
 		stack.setDurability(stack.getDurability() - 1);
 		return true;
 	}

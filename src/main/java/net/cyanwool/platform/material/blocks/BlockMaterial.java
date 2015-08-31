@@ -1,7 +1,7 @@
 package net.cyanwool.platform.material.blocks;
 
 import net.cyanwool.platform.block.Block;
-import net.cyanwool.platform.entity.BaseEntity;
+import net.cyanwool.platform.entity.alive.player.Player;
 import net.cyanwool.platform.inventory.item.ItemStack;
 import net.cyanwool.platform.material.Material;
 import net.cyanwool.platform.material.items.ItemMaterial;
@@ -32,23 +32,23 @@ public class BlockMaterial extends ItemMaterial {
 		super(StringId, Id, metadata, customData);
 	}
 
-	public boolean onBlockPlaced(BaseEntity player, Position pos) {
+	public boolean onBlockPlaced(Player player, Position pos) {
 		return true;
 	}
 
-	public boolean onBlockDestroy(BaseEntity player, Block block) {
+	public boolean onBlockDestroy(Player player, Block block) {
 		return true;
 	}
 
-	public boolean onBlockInteract(BaseEntity player, Block block, ItemStack item) {
+	public boolean onBlockInteract(Player player, Block block, ItemStack item) {
 		return true;
 	}
 
-	public boolean onBlockDig(BaseEntity player, Block block, ItemStack item) {
+	public boolean onBlockDig(Player player, Block block, ItemStack item) {
 		return true;
 	}
 
-	public void onEntityWalk(BaseEntity baseEntity, Block block) {
+	public void onEntityWalk(Player baseEntity, Block block) {
 	}
 
 	public int getLightValue() {
