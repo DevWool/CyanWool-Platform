@@ -9,28 +9,20 @@ import net.cyanwool.platform.Server;
 public class ConsoleTask implements Runnable {
 
 	private Server server;
-	private boolean running;
 
 	public ConsoleTask(Server server) {
 		this.server = server;
-		this.running = true;
-	}
-
-	public void shutdown() {
-		this.running = false;
 	}
 
 	@Override
 	public void run() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));// Console...
-		while (running) {
-			// Maybe...
-			try {
-				String line = reader.readLine();
-				server.getCommandManager().dispatchCommand(server.getConsoleCommandSender(), line);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
+		// Maybe...
+		try {
+			String line = reader.readLine();
+			server.getCommandManager().dispatchCommand(server.getConsoleCommandSender(), line);
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
 	}
 }

@@ -1,4 +1,6 @@
-package net.cyanwool.platform.commandV2;
+package net.cyanwool.platform.command;
+
+import net.cyanwool.platform.Server;
 
 public interface ICommandManager {
 
@@ -6,5 +8,9 @@ public interface ICommandManager {
 
 	public boolean unregisterCommand(String Command);
 
+	public boolean availableCommand(String command);
+
 	public void dispatchCommand(ICommandSender sender, String rawMessage);
+
+	public Server getServer();
 }

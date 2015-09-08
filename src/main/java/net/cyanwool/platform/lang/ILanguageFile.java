@@ -1,6 +1,6 @@
 package net.cyanwool.platform.lang;
 
-public interface LanguageFile {
+public interface ILanguageFile {
 
 	public String getValue(String unlocalizedName);
 

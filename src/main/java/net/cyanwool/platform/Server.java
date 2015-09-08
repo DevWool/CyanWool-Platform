@@ -1,11 +1,11 @@
 //#ProjectQuadrant
 package net.cyanwool.platform;
 
-import net.cyanwool.platform.command.CommandManager;
+import net.cyanwool.platform.command.ICommandManager;
 import net.cyanwool.platform.command.ICommandSender;
 import net.cyanwool.platform.entity.EntityManager;
 import net.cyanwool.platform.io.IOManager;
-import net.cyanwool.platform.lang.LanguageManager;
+import net.cyanwool.platform.lang.ILanguageManager;
 import net.cyanwool.platform.management.OperatorsManager;
 import net.cyanwool.platform.management.PlayerManager;
 import net.cyanwool.platform.management.WhitelistManager;
@@ -115,7 +115,7 @@ public interface Server {
 	/**
 	 * Менеджер языковых пакетов
 	 */
-	public LanguageManager getLanguageManager();
+	public ILanguageManager getLanguageManager();
 
 	/**
 	 * Выключить сервер с сообщением
@@ -145,7 +145,7 @@ public interface Server {
 	 * 
 	 * @return
 	 */
-	public CommandManager getCommandManager();
+	public ICommandManager getCommandManager();
 
 	/**
 	 * Консоль

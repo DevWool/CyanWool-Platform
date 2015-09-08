@@ -18,6 +18,7 @@ public class SimpleServerConfiguration implements ServerConfiguration {
 	private boolean developerMode;
 
 	private File file;
+	private YamlConfiguration config;
 
 	public SimpleServerConfiguration(String configFile) {
 		this.file = new File(configFile);
@@ -25,7 +26,7 @@ public class SimpleServerConfiguration implements ServerConfiguration {
 
 	@Override
 	public void loadFromFile() {
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+		config = YamlConfiguration.loadConfiguration(file);
 		String ip = config.getString("host");
 		if (ip == null) {
 			ip = "0.0.0.0";
@@ -66,19 +67,21 @@ public class SimpleServerConfiguration implements ServerConfiguration {
 	}
 
 	public void createFile() {
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-		try {
-			config.set("host", "0.0.0.0");
-			config.set("port", 25565);
-			config.set("online-mode", false); // for tests
-			config.set("max-players", 20);
-			config.set("motd", "A Custom Minecraft Server");
-			config.set("view-distance", 8);
-			config.set("threads-count", Runtime.getRuntime().availableProcessors());
-			config.set("developer-mode", false);
-			config.save(file);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!file.exists()) {
+			YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
+			try {
+				config.set("host", "0.0.0.0");
+				config.set("port", 25565);
+				config.set("online-mode", false); // for tests
+				config.set("max-players", 20);
+				config.set("motd", "A Custom Minecraft Server");
+				config.set("view-distance", 8);
+				config.set("threads-count", Runtime.getRuntime().availableProcessors());
+				config.set("developer-mode", false);
+				config.save(file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -150,6 +153,16 @@ public class SimpleServerConfiguration implements ServerConfiguration {
 	@Override
 	public void setDeveloperMode(boolean flag) {
 		this.developerMode = flag;
+	}
+
+	@Override
+	public Object getValue(String key) {
+		return config.get(key);
+	}
+
+	@Override
+	public void setValue(String key, Object value) {
+		this.config.set(key, value);
 	}
 
 }

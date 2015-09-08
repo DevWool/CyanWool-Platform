@@ -1,10 +1,10 @@
 package net.cyanwool.platform;
 
-import net.cyanwool.platform.command.CommandManager;
+import net.cyanwool.platform.command.ICommandManager;
 import net.cyanwool.platform.command.ICommandSender;
 import net.cyanwool.platform.entity.EntityManager;
 import net.cyanwool.platform.io.IOManager;
-import net.cyanwool.platform.lang.LanguageManager;
+import net.cyanwool.platform.lang.ILanguageManager;
 import net.cyanwool.platform.management.OperatorsManager;
 import net.cyanwool.platform.management.PlayerManager;
 import net.cyanwool.platform.management.WhitelistManager;
@@ -32,7 +32,7 @@ public class CyanWool {
 			return;
 		}
 		server = init;
-		getServer().getLogger().info("Starting minecraft server " + getServer().getModName() + "(Minecraft Version: " + getServer().getMCVersion() + ")");
+		getServer().getLogger().info("Starting minecraft server " + getServer().getModName() + " (Minecraft Version: " + getServer().getMCVersion() + ")");
 		getServer().start();
 	}
 
@@ -141,7 +141,7 @@ public class CyanWool {
 	/**
 	 * Менеджер языковых пакетов
 	 */
-	public static LanguageManager getLanguageManager() {
+	public static ILanguageManager getLanguageManager() {
 		return getServer().getLanguageManager();
 	}
 
@@ -164,7 +164,7 @@ public class CyanWool {
 	 * 
 	 * @return
 	 */
-	public CommandManager getCommandManager() {
+	public ICommandManager getCommandManager() {
 		return getServer().getCommandManager();
 	}
 

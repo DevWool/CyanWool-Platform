@@ -2,12 +2,14 @@ package net.cyanwool.platform;
 
 import java.io.IOException;
 
-import net.cyanwool.platform.command.CommandManager;
+import net.cyanwool.platform.command.ICommandManager;
 import net.cyanwool.platform.command.ConsoleCommandSender;
 import net.cyanwool.platform.command.ICommandSender;
+import net.cyanwool.platform.command.SimpleCommandManager;
 import net.cyanwool.platform.entity.EntityManager;
 import net.cyanwool.platform.io.IOManager;
-import net.cyanwool.platform.lang.LanguageManager;
+import net.cyanwool.platform.lang.ILanguageManager;
+import net.cyanwool.platform.lang.impl.CWLanguageManager;
 import net.cyanwool.platform.management.OperatorsManager;
 import net.cyanwool.platform.management.PlayerManager;
 import net.cyanwool.platform.management.WhitelistManager;
@@ -15,6 +17,7 @@ import net.cyanwool.platform.network.NetworkServer;
 import net.cyanwool.platform.plugins.IPluginManager;
 import net.cyanwool.platform.plugins.impl.PluginManager;
 import net.cyanwool.platform.scheduler.Scheduler;
+import net.cyanwool.platform.scheduler.tasks.ConsoleTask;
 import net.cyanwool.platform.utils.ILogger;
 import net.cyanwool.platform.utils.Registry;
 import net.cyanwool.platform.utils.ServerConfiguration;
@@ -31,10 +34,10 @@ public class SimpleServer implements Server {
 	private PlayerManager playerManager;
 	private NetworkServer netServer;
 	private EntityManager entityManager;
-	private LanguageManager languageManager;
+	private ILanguageManager languageManager;
 	private Registry registry;
 	private IPluginManager pluginManager;
-	private CommandManager commandManager;
+	private ICommandManager commandManager;
 	private ICommandSender consoleSender;
 	private ServerConfiguration serverConf;
 	private WorldManager worldManager;
@@ -57,7 +60,9 @@ public class SimpleServer implements Server {
 			return;
 		}
 
+		// Init stock values
 		setConsoleCommandSender(new ConsoleCommandSender());
+		commandManager = new SimpleCommandManager(this);
 
 		SimpleServerConfiguration config = new SimpleServerConfiguration("server.yml");
 		config.createFile();
@@ -69,14 +74,22 @@ public class SimpleServer implements Server {
 			getLogger().warn("The server is running in offline mode! Only do this if you know what you're doing.");
 		}
 
+		getLanguageManager().loadAllLanguages();
 		getPluginManager().loadPlugins();
-		checkManagers();
+
+		if (!getServerConfiguration().isDeveloperMode()) {
+			checkManagers();
+		}
+		getScheduler().runTaskRepeat(new ConsoleTask(this), 0, 1);
 		getPluginManager().enablePlugins();
+
+		getLogger().info("Done! ");
 	}
 
 	private void initPluginManager() {
 		try {
 			this.pluginManager = new PluginManager(this, "plugins");
+			this.languageManager = new CWLanguageManager(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +186,7 @@ public class SimpleServer implements Server {
 	}
 
 	@Override
-	public LanguageManager getLanguageManager() {
+	public ILanguageManager getLanguageManager() {
 		return languageManager;
 	}
 
@@ -199,7 +212,7 @@ public class SimpleServer implements Server {
 	}
 
 	@Override
-	public CommandManager getCommandManager() {
+	public ICommandManager getCommandManager() {
 		return commandManager;
 	}
 
